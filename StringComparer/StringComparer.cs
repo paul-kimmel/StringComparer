@@ -10,10 +10,10 @@ namespace StringComparer
   public static partial class StringComparer
   {
 
-    public static bool Match(string str1, string str2, bool emptiesMatch = true)
+    public static bool Match(string lhs, string rhs, bool emptiesMatch = true)
     {
-      if (Guard(str1, str2)) return emptiesMatch;
-      return PerformTokenMatch(str1, str2, emptiesMatch);
+      if (Guard(lhs, rhs)) return emptiesMatch;
+      return PerformTokenMatch(lhs, rhs, emptiesMatch);
     }
 
     private static bool Guard(string str1, string str2)
@@ -34,16 +34,16 @@ namespace StringComparer
 
     private static bool PerformTokenMatch(string lhs, string rhs, bool emptiesMatch = true)
     {
-      var t1 = new TokenEnumerator(lhs);
-      var t2 = new TokenEnumerator(rhs);
+      var tokenLhs = new TokenEnumerator(lhs);
+      var tokenRhs = new TokenEnumerator(rhs);
 
       while (true)
       {
-        var m1 = t1.MoveNext();
-        var m2 = t2.MoveNext();
-        if (m1 == false && m2 == false) return true;
+        var leftToken = tokenLhs.MoveNext();
+        var rightToken = tokenRhs.MoveNext();
+        if (leftToken == false && rightToken == false) return true;
 
-        if (t1.Current != t2.Current) return false;
+        if (tokenLhs.Current != tokenRhs.Current) return false;
       }
     }
 
