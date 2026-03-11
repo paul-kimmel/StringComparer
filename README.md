@@ -4,7 +4,9 @@ A small experimental C# utility for comparing two strings using token enumeratio
 
 This is a coding test style problem. It emphasizes articial boundary problems by allow -length strings greater than 0 to be the same. As a practicel hands on test the parameters include no regex, no string.Xxx function like split, and strings can the max length of 2GB. This, if you parse strings into arrays are alter the strings then the string interning will fail and you'll likely run out of memory.
 
-You could try stacks, indexing, parsing, tokenization logic, but likely cool fuzzy matching algorithms may not match. I will try Ratcliff-Obershelp.
+You could try stacks, indexing, parsing, tokenization logic, but likely cool fuzzy matching algorithms may not match. 
+
+I will stick a RatcliffObershelpCoefficient for tetsing to see how well that works.
 
 This code attempts to normalize empty strings and whitespace before comparing tokenized values.
 
