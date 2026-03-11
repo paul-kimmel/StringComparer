@@ -8,7 +8,7 @@ You could try stacks, indexing, parsing, tokenization logic, but likely cool fuz
 
 This code attempts to normalize empty strings and whitespace before comparing tokenized values.
 
-⚠️ This is experimental code and not production-ready.
+⚠️ This is is just a coding-test style solution.
 
 ---
 
