@@ -2,6 +2,10 @@
 
 A small experimental C# utility for comparing two strings using token enumeration instead of direct string comparison.
 
+This is a coding test style problem. It emphasizes articial boundary problems by allow -length strings greater than 0 to be the same. As a practicel hands on test the parameters include no regex, no string.Xxx function like split, and strings can the max length of 2GB. This, if you parse strings into arrys are alter the strings then the string interning will fail and you'll likely run out of memory.
+
+You could try stacks, indexing, parsing or tokenization logic.
+
 This code attempts to normalize empty strings and whitespace before comparing tokenized values.
 
 ⚠️ This is experimental code and not production-ready.
@@ -11,7 +15,7 @@ This code attempts to normalize empty strings and whitespace before comparing to
 ## Features
 
 - Compares two strings token-by-token
-- Treats empty or whitespace-only strings as equivalent
+- Treats empty or whitespace-only strings as equivalent; whitespace is equivalent for length, where n > 0
 - Avoids `Split()` or regex allocations
 - Uses a custom `TokenEnumerator`
 
