@@ -58,5 +58,31 @@ namespace StringComparer
       return (String.IsNullOrEmpty(first) && String.IsNullOrEmpty(second));
     }
 
+    public static double JaccardCoefficient(string first, string second, params string[] ignore)
+    {
+      if (BothAreNull(first, second)) return 1;
+      if (OnlyOneIsNull(first, second)) return 0;
+
+      try
+      {
+        var set1 = first.ToUpper().Split(ignore, StringSplitOptions.RemoveEmptyEntries);
+        var set2 = second.ToUpper().Split(ignore, StringSplitOptions.RemoveEmptyEntries);
+
+        return (double)set1.Intersect(set2).Count() / set1.Union(set2).Count();
+      }
+      catch (Exception ex)
+      {
+        Debug.WriteLine(ex.Message);
+        return 0;
+      }
+    }
+
+    public static bool OnlyOneIsNull(string first, string second)
+    {
+      return (string.IsNullOrEmpty(first) && string.IsNullOrEmpty(second) == false) ||
+        ((string.IsNullOrEmpty(second) && string.IsNullOrEmpty(first) == false));
+    }
+
+
   }
 }
