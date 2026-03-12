@@ -2,7 +2,7 @@
 
 A small experimental C# utility for comparing two strings using token enumeration instead of direct string comparison.
 
-This is a coding test style problem. It emphasizes articial boundary problems by allow -length strings greater than 0 to be the same. As a practicel hands on test the parameters include no regex, no string.Xxx function like split, and strings can the max length of 2GB. This, if you parse strings into arrays are alter the strings then the string interning will fail and you'll likely run out of memory.
+This is a coding test style problem. It emphasizes articial boundary problems by allow -length strings greater than 0 to be the same. As a practicel hands on test the parameters include no regex, no string.Xxx function like split, and strings can the max length of 2GB. Thus, if you parse strings into arrays are alter the strings then the string interning will fail and you'll likely run out of memory. (A naive solution would be make all whitespace strings of length n > 0 to be 1 and then make a simple comparison S1 == S2; this would chew up memory like crazy.)
 
 You could try stacks, indexing, parsing, tokenization logic, but likely cool fuzzy matching algorithms may not match. 
 
