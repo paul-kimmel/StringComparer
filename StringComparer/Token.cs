@@ -34,7 +34,7 @@
 
   public override string ToString()
   {
-    return ch.ToString();
+    return IsWhitespace(ch) ? "SPACE" : ch.ToString();
   }
 
   public static bool operator !=(Token lhs, Token rhs)

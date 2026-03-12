@@ -32,7 +32,7 @@ namespace StringComparer
       return true;
     }
 
-    private static bool PerformTokenMatch(string lhs, string rhs, bool emptiesMatch = true)
+    private static (TokenEnumerator lhs, TokenEnumerator rhs, bool matchResult) _PerformTokenMatch(string lhs, string rhs, bool emptiesMatch = true)
     {
       var tokenLhs = new TokenEnumerator(lhs);
       var tokenRhs = new TokenEnumerator(rhs);
@@ -41,10 +41,25 @@ namespace StringComparer
       {
         var leftToken = tokenLhs.MoveNext();
         var rightToken = tokenRhs.MoveNext();
-        if (leftToken == false && rightToken == false) return true;
+        if (leftToken == false && rightToken == false) return (tokenLhs, tokenRhs, true);
 
-        if (tokenLhs.Current != tokenRhs.Current) return false;
+        if (tokenLhs.Current != tokenRhs.Current) return (tokenLhs, tokenRhs, false);
       }
+    }
+
+    private static bool PerformTokenMatch(string lhs, string rhs, bool emptiesMatch = true)
+    {
+      var result = _PerformTokenMatch(lhs, rhs, emptiesMatch);
+
+      return Report(result).matchResult;
+    }
+
+    private static (TokenEnumerator lhs, TokenEnumerator rhs, bool matchResult) Report((TokenEnumerator lhs, TokenEnumerator rhs, bool matchResult) result)
+    {
+      result.lhs.DumpTokens();
+      Console.WriteLine(new string('*', 80));
+      result.rhs.DumpTokens();
+      return result;
     }
 
     public static bool GuardTest()
@@ -54,5 +69,6 @@ namespace StringComparer
   }
 
 }
+
 
 

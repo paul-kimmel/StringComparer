@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Diagnostics;
+using System.Net.Http.Headers;
 
 public class TokenEnumerator(string raw) : IEnumerator<Token>
 {
@@ -37,6 +38,24 @@ public class TokenEnumerator(string raw) : IEnumerator<Token>
     }
   }
 
+  private List<Token> tokens = new List<Token>();
+  private void StashToken(Token token)
+  {
+#if DEBUG
+    tokens.Add(token);
+#endif
+  }
+
+
+  public void DumpTokens()
+  {
+#if DEBUG
+    var result = string.Join(", ", tokens.Select(t => t.ToString()));
+    Console.WriteLine($"Token count: {tokens.Count}, Tokens: {result}, Last Token: {tokens.Last()}");
+
+#endif
+  }
+
   private Token GetNextToken()
   {
     try
@@ -53,6 +72,7 @@ public class TokenEnumerator(string raw) : IEnumerator<Token>
           Index++;
         }
 
+      StashToken(result);
       return result;
     }
     catch (Exception ex)
