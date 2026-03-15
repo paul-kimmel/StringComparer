@@ -11,9 +11,9 @@ var stopwatch = new Stopwatch();
 try
 {
   stopwatch.Start();
-  //Console.WriteLine($"Match: {StringComparer.StringComparer.Match("ab cd  ", "ab cd   ")}");
-  Console.WriteLine($"Match: {StringComparer.StringComparer.Match("abra cadabra  ", "abra cadabra")}");
-  //Console.WriteLine($"Match: {StringComparer.StringComparer.Match(TestStrings.Dolar1, TestStrings.Dolar2)}");
+  //Console.WriteLine($"Match: {FunctionalStringComparer.FunctionalStringComparer.Match("ab cd  ", "ab cd   ")}");
+  Console.WriteLine($"Match: {StringComparer.FunctionalStringComparer.Match("abra cadabra  ", "abra cadabra")}");
+  //Console.WriteLine($"Match: {FunctionalStringComparer.FunctionalStringComparer.Match(TestStrings.Dolar1, TestStrings.Dolar2)}");
   stopwatch.Stop();
 }
 finally
